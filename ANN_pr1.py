@@ -51,5 +51,14 @@ ann.add(tf.keras.layers.Dense(units=6, activation="relu"))
 ann.add(tf.keras.layers.Dense(units=6, activation="relu"))
 ann.add(tf.keras.layers.Dense(units=1, activation="sigmoid"))
 ann.compile(optimizer="adam",loss="binary_crossentropy",metrics=['accuracy'])
-ann.fit(X_train, Y_train, batch_size=32, epochs=100)
+ann.fit(X_train, Y_train, batch_size=10, epochs=100)
 
+Y_pred=ann.predict(X_test)
+Y_pred=(Y_pred>0.5)
+
+#-----------------------------------------------------------
+
+from sklearn.metrics import confusion_matrix, accuracy_score
+cm = confusion_matrix(Y_test, Y_pred)
+print(cm)
+accuracy_score(Y_test,Y_pred)
